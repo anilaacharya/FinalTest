@@ -1,0 +1,153 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyM6iPzr4uMCqLn7rnCvzFpY",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/anilaacharya/FinalTest/blob/main/Practice%20Explaratory\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "metadata": {
+        "id": "hc2nqpCkBqku"
+      },
+      "outputs": [],
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "# Read the CSV file\n",
+        "data = pd.read_csv(\"/content/adult.csv\")\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1. How many men and women (sex feature) are represented in this dataset?\n",
+        "\n",
+        "gender_counts = data['gender'].value_counts()\n",
+        "print(\"Number of women:\", gender_counts[' Female'])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "V_U56SUTB7M5",
+        "outputId": "fb6bdf4d-cb3f-40c2-b362-58af63267df9"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Number of women: 10771\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#. What is the average age (age feature) of women?\n",
+        "women_data = data[data['gender'] == ' Female']\n",
+        "\n",
+        "average_age_women = women_data['age'].mean()\n",
+        "print(\"Average Age of Wonmen\", average_age_women)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "XcfSq6P9Cc43",
+        "outputId": "489cf320-b362-4fc9-ab03-e743dd4537a8"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Average Age of Wonmen 36.85823043357163\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#3. What is the percentage of German citizens (native-country feature)?\n",
+        "\n",
+        "# Calculate the percentage of German citizens\n",
+        "percentage_german_citizens = (data[data['native-country'] == ' Germany'].shape[0] / data.shape[0]) * 100\n",
+        "\n",
+        "# Display the result\n",
+        "print(\"Percentage of German citizens:\", percentage_german_citizens)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "tte_Kjf8CuHE",
+        "outputId": "9712fbf5-22e8-44e5-84a6-674f6f229916"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Percentage of German citizens: 0.42074874850281013\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# What are the mean and standard deviation of age for those who earn more than\n",
+        "# 50K per year (salary feature) and those who earn less than 50K per year?\n",
+        "\n",
+        "high_income_data = data[data['income'] == ' >50K']\n",
+        "low_income_data = data[data['income'] == ' <=50K']\n",
+        "\n",
+        "# Calculate mean and standard deviation of age for high / low income group\n",
+        "mean_age_high_income = high_income_data['age'].mean()\n",
+        "std_age_high_income = high_income_data['age'].std()\n",
+        "mean_age_low_income = low_income_data['age'].mean()\n",
+        "std_age_low_income = low_income_data['age'].std()\n",
+        "\n",
+        "print(\"Mean age for individuals earning more than 50K per year:\", mean_age_high_income)\n",
+        "print(\"Standard deviation of age for individuals earning more than 50K per year:\", std_age_high_income)\n",
+        "print(\"Mean age for individuals earning less than or equal to 50K per year:\", mean_age_low_income)\n",
+        "print(\"Standard deviation of age for individuals earning less than or equal to 50K per year:\", std_age_low_income)"
+      ],
+      "metadata": {
+        "id": "YHDPlFDwDZ9r"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
